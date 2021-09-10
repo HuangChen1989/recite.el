@@ -15,10 +15,10 @@
          (myjson (shell-command-to-string cmd))
          (myseq (json-parse-string myjson)))
     (switch-to-buffer "*scratch*")
-    (seq-doseq (seqi myseq)
-      (if (y-or-n-p "Do it?")
-          (progn
-            (erase-buffer)
-            (insert seqi))
-        ))))
+    (cl-loop for i in myseq
+             (if (y-or-n-p "Do it?")
+                 (progn
+                   (erase-buffer)
+                   (insert i))
+               ))))
 (provide 'recite)
