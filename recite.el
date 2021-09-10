@@ -2,6 +2,8 @@
   (if load-file-name
       (file-name-directory load-file-name)
     default-directory))
+
+;;;###autoload
 (defun recite ()
   (interactive)
   (let* ((text (buffer-string))
@@ -25,4 +27,5 @@
           (erase-buffer)
           (insert i)
           )))))
-(provide 'recite.el)
+
+(provide 'recite)
