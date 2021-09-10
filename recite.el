@@ -5,10 +5,11 @@
 (defun recite-buffer-string ()
   (interactive)
   (let* ((text (buffer-string))
-         (dir my-shell-directory)
          (choices
           '("word" "sentence" "sentence2" "random"))
          (mychoice (ido-completing-read          "mode:" choices))
+         (dir
+          (if load-file-name              (file-name-directory load-file-name)            default-directory))
          (cmd (format "python %srecite.py '%s' %s"
                       dir
                       text
