@@ -6,7 +6,7 @@
          (choices
           '("word" "sentence" "sentence2" "random"))
          (mychoice (ido-completing-read          "mode:" choices))
-         (my-shell-directory
+         (dir
           (if load-file-name              (file-name-directory load-file-name)            default-directory))
          (cmd (format "python %srecite.py '%s' %s"
                       dir
