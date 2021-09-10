@@ -1,11 +1,10 @@
-;;;###autoload
 (defvar my-shell-directory
   (if load-file-name
       (file-name-directory load-file-name)
     default-directory))
 
 ;;;###autoload
-(defun recite ()
+(defun recite-mode ()
   (interactive)
   (let* ((text (buffer-string))
          (dir my-shell-directory)
