@@ -1,4 +1,4 @@
-(require 'cl-lib)
+(require 'seq)
 (defvar my-shell-directory
   (if load-file-name
       (file-name-directory load-file-name)
@@ -16,10 +16,13 @@
          (myjson (shell-command-to-string cmd))
          (myseq (json-parse-string myjson)))
     (switch-to-buffer "*scratch*")
-    (cl-loop for i in myseq
-             (if (y-or-n-p "Do it?")
-                 (progn
-                   (erase-buffer)
-                   (insert i))
-               ))))
+    (seq-doseq (i myseq)
+      (if (y-or-n-p "Do it?")
+          (progn
+            (erase-buffer)
+            (insert i))
+        (progn
+          (erase-buffer)
+          (insert i))
+        ))))
 (provide 'recite)
