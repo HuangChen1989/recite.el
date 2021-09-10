@@ -2,7 +2,7 @@
   (if load-file-name
       (file-name-directory load-file-name)
     default-directory))
-(defun recite ()
+(defun recite-buffer-string ()
   (interactive)
   (let* ((text (buffer-string))
          (dir my-shell-directory)
@@ -25,4 +25,4 @@
           (erase-buffer)
           (insert i)
           )))))
-(provide 'recite.el)
+(provide 'recite)
