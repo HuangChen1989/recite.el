@@ -2,7 +2,6 @@
 (defun recite-mode ()
   (interactive)
   (let* ((text (buffer-string))
-         (dir my-shell-directory)
          (choices
           '("word" "sentence" "sentence2" "random"))
          (mychoice (ido-completing-read          "mode:" choices))
