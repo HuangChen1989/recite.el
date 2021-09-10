@@ -1,3 +1,4 @@
+(require 'cl-lib)
 (defvar my-shell-directory
   (if load-file-name
       (file-name-directory load-file-name)
