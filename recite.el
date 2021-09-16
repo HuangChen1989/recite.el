@@ -5,7 +5,9 @@
     default-directory))
 (defun recite-buffer-string ()
   (interactive)
-  (let* ((text (buffer-string))
+  (let* ((text (buffer-substring-no-properties
+                0
+                (end-of-buffer)))
          (choices
           '("word" "sentence" "sentence2" "random"))
          (mychoice (ido-completing-read          "mode:" choices))
