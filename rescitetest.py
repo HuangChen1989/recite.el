@@ -65,14 +65,14 @@ while listToProcess:
     del listToProcess[0]
 print(blankIndexFiltered)
 
-for i in blankIndexFiltered:
-    r
-
-def textReplaceByDash(text,blank):text=list(text)for i in blank:
-foriin i:
-text[j]
-return"".join(text)
-def blankStepBystep(x):iflen(x)==1:
+def textReplaceByDash(text,blank):
+    text=list(text)
+    for i in blank:
+        for j in i:
+            text[j] ='_'
+    return "".join(text)
+def blankStepBystep(x):
+    iflen(x)==1:
 return [x]
 丁—
 else:
