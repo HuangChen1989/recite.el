@@ -1,21 +1,22 @@
-# recite.el 辅助记忆插件
-## 安装
-doom emacs
-``` emacs-lisp
-;; package.el
-(package! recite.el
-  :recipe (:host github :repo "Huangchen1989/recite.el" :files ("*")))
+# recite
 
-;; config.el
-(require 'recite)
-```
+A Clojure library designed to ... well, that part is up to you.
 
-## 使用
-`M-x recite-buffer-string`
+## Usage
 
-## 功能
-- 将 buffer 中的文本取出来，随机隐藏部分文本，头脑中进行填空，按 y 键依次显示出来 
-- 隐藏文本有3种模式:
-  - word 结巴分词，隐藏词语
-  - sentence 只保留每个短句的第一个字
-  - sentence2 隐藏短句
+FIXME
+
+## License
+
+Copyright © 2021 FIXME
+
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License 2.0 which is available at
+http://www.eclipse.org/legal/epl-2.0.
+
+This Source Code may also be made available under the following Secondary
+Licenses when the conditions for such availability set forth in the Eclipse
+Public License, v. 2.0 are satisfied: GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or (at your
+option) any later version, with the GNU Classpath Exception which is available
+at https://www.gnu.org/software/classpath/license.html.

@@ -4,21 +4,12 @@ import sys
 import json
 import logging
 
+
 jieba.setLogLevel(logging.INFO)
-text = ""
-mode =sys.argv[2]
-if mode == "word":
-    reciteMode="1"
-elif mode=="sentence":
-    reciteMode="2"
-elif mode=="sentence2":
-    reciteMode="3"
-else:
-    reciteMode = random.choice(["1","2","3"])
-
-
 signs = ["，", "。", "！", "？", "“", "”", "《", "》", "（", "）","、","；",",","."," ","-","!",";","?","'"," ","\n"]
 
+# [[4, 7]]
+# [[4, 7], [8, 12]]
 def replaceWord(x, s):
     res = []
     for i in x:
@@ -57,24 +48,36 @@ def blank_print(blankIndex,words,text):
     res.append(text)
     return res
 
-def reciteMode1(text):
-    words = jieba.lcut(text)
-    l = 0
-    for i in words:
-        if not i in signs:
-            l += 1
-    l = l / 2
-    blankIndex = []
-    while l > 0:
-        randomIndex = random.choice(range(len(words)))
-        w = words[randomIndex]
-        if (not w in signs) and (not randomIndex in blankIndex):
-            blankIndex.append(randomIndex)
-            l -= 1
+text="长相思，在长安，络纬秋啼金井阑"
+words = jieba.tokenize(text)
+l = 0
+blankIndex = []
+for i in words:
+    if (not i[0] in signs) and random.choice([True,False]):
+        blankIndex.append([i[1],i[2]])
+blankIndexFiltered=[blankIndex[0]]
+listToProcess=blankIndex[1:]
+while listToProcess:
+    if blankIndexFiltered[-1][1]==listToProcess[0][0]:
+        blankIndexFiltered[-1][1]=listToProcess[0][1]
+    else:
+        blankIndexFiltered.append(listToProcess[0])
+    del listToProcess[0]
+print(blankIndexFiltered)
 
-    blankIndex.sort()
-    return blank_print(blankIndex,words,text)
+for i in blankIndexFiltered:
+    r
 
+def textReplaceByDash(text,blank):text=list(text)for i in blank:
+foriin i:
+text[j]
+return"".join(text)
+def blankStepBystep(x):iflen(x)==1:
+return [x]
+丁—
+else:
+temp=blankStepByStep(x[1:])
+temp.append(x)return temp
 def reciteMode2(text):
     words = jieba.lcut(text)
     l = len(words)
@@ -122,5 +125,3 @@ def reciteMode3(text):
     return blank_print(blankIndex,words,text)
 
 
-output=json.dumps(eval("reciteMode" + reciteMode + "(text)"))
-sys.stdout.write(output)
