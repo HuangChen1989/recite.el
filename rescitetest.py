@@ -48,36 +48,27 @@ def blank_print(blankIndex,words,text):
     res.append(text)
     return res
 
-text="长相思，在长安，络纬秋啼金井阑"
-words = jieba.tokenize(text)
-l = 0
-blankIndex = []
-for i in words:
-    if (not i[0] in signs) and random.choice([True,False]):
-        blankIndex.append([i[1],i[2]])
-blankIndexFiltered=[blankIndex[0]]
-listToProcess=blankIndex[1:]
-while listToProcess:
-    if blankIndexFiltered[-1][1]==listToProcess[0][0]:
-        blankIndexFiltered[-1][1]=listToProcess[0][1]
-    else:
-        blankIndexFiltered.append(listToProcess[0])
-    del listToProcess[0]
-print(blankIndexFiltered)
 
-def textReplaceByDash(text,blank):
-    text=list(text)
-    for i in blank:
-        for j in i:
-            text[j] ='_'
-    return "".join(text)
-def blankStepBystep(x):
-    iflen(x)==1:
-return [x]
-丁—
-else:
-temp=blankStepByStep(x[1:])
-temp.append(x)return temp
+text="长相思，在长安，络纬秋啼金井阑"
+def reciteMode1(text):
+    words = jieba.tokenize(text)
+    blankIndex = []
+    for i in words:
+        if (not i[0] in signs) and random.choice([True,False]):
+            blankIndex.append([i[1],i[2]])
+    blankIndexFiltered=[blankIndex[0]]
+    listToProcess=blankIndex[1:]
+    while listToProcess:
+        if blankIndexFiltered[-1][1]==listToProcess[0][0]:
+            blankIndexFiltered[-1][1]=listToProcess[0][1]
+        else:
+            blankIndexFiltered.append(listToProcess[0])
+        del listToProcess[0]
+    return blankIndexFiltered
+
+print(reciteMode1(text))
+
+
 def reciteMode2(text):
     words = jieba.lcut(text)
     l = len(words)

@@ -3,6 +3,26 @@
   (if load-file-name
       (file-name-directory load-file-name)
     default-directory))
+
+
+(defun recite-text (text blank)
+  (progn (switch-to-buffer "*scratch*")
+         (erase-buffer)
+         (visual-line-mode)
+         (insert text)
+         (seq-doseq (i blank)
+           (overlay-put (apply 'make-overlay (append i nil)) 'display
+                        (make-string
+                         (+ (- (elt i 1)
+                               (elt i 0))) ?_)))
+         (seq-doseq (i blank)
+           (if (y-or-n-p "remenber it? ")
+               (apply 'remove-overlays (append i nil))
+             (progn
+               (apply 'remove-overlays (append i nil))
+               (overlay-put (apply 'make-overlay (append i nil)) 'face 'error))))))
+
+
 (defun recite-buffer-string ()
   (interactive)
   (let* ((text (buffer-string))
@@ -14,15 +34,7 @@
                       text
                       mychoice))
          (myjson (shell-command-to-string cmd))
-         (myseq (json-parse-string myjson)))
-    (switch-to-buffer "*scratch*")
-    (seq-doseq (i myseq)
-      (if (y-or-n-p "Do it?")
-          (progn
-            (erase-buffer)
-            (insert i))
-        (progn
-          (erase-buffer)
-          (insert i))
-        ))))
+         (blank (json-parse-string myjson)))
+    (print blank)
+    (recite-text text blank)))
 (provide 'recite)

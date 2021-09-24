@@ -58,22 +58,20 @@ def blank_print(blankIndex,words,text):
     return res
 
 def reciteMode1(text):
-    words = jieba.lcut(text)
-    l = 0
-    for i in words:
-        if not i in signs:
-            l += 1
-    l = l / 2
+    words = jieba.tokenize(text)
     blankIndex = []
-    while l > 0:
-        randomIndex = random.choice(range(len(words)))
-        w = words[randomIndex]
-        if (not w in signs) and (not randomIndex in blankIndex):
-            blankIndex.append(randomIndex)
-            l -= 1
-
-    blankIndex.sort()
-    return blank_print(blankIndex,words,text)
+    for i in words:
+        if (not i[0] in signs) and random.choice([True,False]):
+            blankIndex.append([i[1],i[2]])
+    blankIndexFiltered=[blankIndex[0]]
+    listToProcess=blankIndex[1:]
+    while listToProcess:
+        if blankIndexFiltered[-1][1]==listToProcess[0][0]:
+            blankIndexFiltered[-1][1]=listToProcess[0][1]
+        else:
+            blankIndexFiltered.append(listToProcess[0])
+        del listToProcess[0]
+    return blankIndexFiltered
 
 def reciteMode2(text):
     words = jieba.lcut(text)
