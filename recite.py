@@ -5,7 +5,7 @@ import json
 import logging
 
 jieba.setLogLevel(logging.INFO)
-text = ""
+text = sys.argv[1]
 mode =sys.argv[2]
 if mode == "word":
     reciteMode="1"
