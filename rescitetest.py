@@ -8,8 +8,6 @@ import logging
 jieba.setLogLevel(logging.INFO)
 signs = ["，", "。", "！", "？", "“", "”", "《", "》", "（", "）","、","；",",","."," ","-","!",";","?","'"," ","\n"]
 
-# [[4, 7]]
-# [[4, 7], [8, 12]]
 def replaceWord(x, s):
     res = []
     for i in x:
@@ -49,13 +47,16 @@ def blank_print(blankIndex,words,text):
     return res
 
 
-text="长相思，在长安，络纬秋啼金井阑"
+text="长 相思，在长\n安，络纬秋啼金井阑"
 def reciteMode1(text):
     words = jieba.tokenize(text)
     blankIndex = []
     for i in words:
         if (not i[0] in signs) and random.choice([True,False]):
             blankIndex.append([i[1],i[2]])
+    print(blankIndex)
+    for i in blankIndex:
+        print(text[i[0]:i[1]])
     blankIndexFiltered=[blankIndex[0]]
     listToProcess=blankIndex[1:]
     while listToProcess:
