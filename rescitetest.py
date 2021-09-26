@@ -47,14 +47,13 @@ def blank_print(blankIndex,words,text):
     return res
 
 
-text="长 相思，在长\n安，络纬秋啼金井阑"
+text="长 相,思，在长\n安，络纬,秋.啼金井阑"
 def reciteMode1(text):
     words = jieba.tokenize(text)
     blankIndex = []
     for i in words:
         if (not i[0] in signs) and random.choice([True,False]):
             blankIndex.append([i[1],i[2]])
-    print(blankIndex)
     for i in blankIndex:
         print(text[i[0]:i[1]])
     blankIndexFiltered=[blankIndex[0]]
@@ -66,8 +65,28 @@ def reciteMode1(text):
             blankIndexFiltered.append(listToProcess[0])
         del listToProcess[0]
     return blankIndexFiltered
+ def reciteMode4(text):
+    words = jieba.tokenize(text)
+    blankIndex= []
+    flag =random.choice([True,False])
+    for i in words:
+        if i[0] in signs:
+            if random.choice([True,False]):
+                flag=not(flag)
+        elif flag:
+            blankIndex.append([i[1],i[2]])
+    blankIndexFiltered=[blankIndex[0]]
+    listToProcess=blankIndex[1:]
+    while listToProcess:
+        if blankIndexFiltered[-1][1]==listToProcess[0][0]:
+            blankIndexFiltered[-1][1]=listToProcess[0][1]
+        else:
+            blankIndexFiltered.append(listToProcess[0])
+        del listToProcess[0]
+    return blankIndexFiltered
 
-print(reciteMode1(text))
+
+print(reciteMode4(text))
 
 
 def reciteMode2(text):
