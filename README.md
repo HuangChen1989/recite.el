@@ -1,22 +1,24 @@
-# recite
+# recite.el 一个辅助记忆的插件
 
-A Clojure library designed to ... well, that part is up to you.
+`(recite-buffer-string)` 将 buffer 中的文本取出来，随机隐藏部分文本，并逐个提示 Remember it?
+- 按 Y 显示文本
+- 按 N 显示文本，并高亮
 
-## Usage
+隐藏文本有两种模式:
+- 结巴分词，隐藏词语
+- 在标点符号、空格、换行处分句，隐藏句子
 
-FIXME
+## 安装
 
-## License
+依赖： 
+- python3 
+- python 模块 jieba
+- emacs27.1 json 解析
+- linux
 
-Copyright © 2021 FIXME
+``` emacs-lisp
+(add-to-list 'load-path "~/path/to/recite.el")
+(require 'recite)
+```
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.

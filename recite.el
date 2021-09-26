@@ -11,7 +11,7 @@
     default-directory))
 
 (defun count-dash (text x)
-  "计算_的个数，中文字符要用两个_"
+  "计算 TEXT 给定文本中_的个数, X 是一个vector,由[开始下标 结束下标]组成."
   (let* ((start (elt x 0))
          (end (elt x 1))
          (range (number-sequence start (- end 1))))
@@ -23,7 +23,7 @@
     dash-sum))
 
 (defun recite-text (text blank)
-  "使用overlay隐藏部分"
+  "给定 TEXT 使用 overlay 隐藏 BLANK 部分."
   (progn (switch-to-buffer "*scratch*")
          (erase-buffer)
          (insert text)
@@ -58,6 +58,7 @@
                   'error)))))))
 
 (defun recite-buffer-string ()
+  "辅助记忆缓冲区内容."
   (interactive)
   (let* ((text (buffer-string))
          (choices
