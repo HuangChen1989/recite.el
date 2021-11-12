@@ -42,7 +42,7 @@
          (seq-doseq (i blank)
            (let ((start (+ 1 (elt i 0)))
                  (end (+ 1 (elt i 1))))
-             (if (y-or-n-p "Remenber it? ")
+             (if (y-or-n-p "Remember it? ")
                  (remove-overlays
                   start
                   end)
@@ -63,7 +63,9 @@
   (let* ((text (buffer-string))
          (choices
           '("word" "sentence" "random"))
-         (mychoice (ido-completing-read          "mode:" choices))
+         (mychoice
+          (ivy-completing-read
+           "mode:" choices))
          (cmd (format "python %srecite.py '%s' %s"
                       my-shell-directory
                       text
